@@ -20,9 +20,10 @@
 <template>
     <div class="contaniner">
         <div class="row">
-            <div v-for="(film, index) in store.list" :key="index">
-                <AppCard :myFilm="film"/>
-                <hr>
+            <div class="content d-flex flex-wrap">
+                <div v-for="(film, index) in store.list" :key="index">
+                    <AppCard :myFilm="film"/>
+                </div>
             </div>
         </div>
     </div>
