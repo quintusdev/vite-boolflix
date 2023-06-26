@@ -13,14 +13,17 @@
 </script>
 
 <template>
-    <div class="input-group rounded">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" v-model="store.searchValue" @change="$emit('search')"/>
-        <span class="input-group-text border-0" id="search-addon">
-            <i class="fas fa-search"></i>
-        </span>
+    <div class="container">
+        <div class="row">
+            <div class="input-group rounded">
+                <input type="search" class="form-control rounded" placeholder="Ricerca qui il tuo film o serie preferita" aria-label="Search" aria-describedby="search-addon" v-model="store.searchValue"/>
+                <button class="m-1" @click="$emit('search')">Ricerca</button>
+            </div>
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
+    @use '../src/styles/generals.scss' as *;
     @use '../styles/partials/variables' as *;
 </style>

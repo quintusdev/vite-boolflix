@@ -1,4 +1,7 @@
 <script>
+    /* importo lo store dal file store.js */
+    import { store } from '../store.js';
+
     export default {
         data() {
             return {
@@ -12,13 +15,17 @@
 </script>
 
 <template>
-    <h1>Risultato ricerca</h1>
-    <ul>
-        <li>Film trovati:</li>
-        <li><img :src="" alt=""></li>
-    </ul>
+    <div>
+        <h3>{{ myFilm.title }}</h3>
+        <h4>{{ myFilm.original_title }}</h4>
+        <h4>{{ myFilm.original_language }}</h4>
+        <h5>{{ myFilm.vote_average }}</h5>
+    </div>
 </template>
 
 <style lang="scss" scoped>
+    @use '../src/styles/generals.scss' as *;
     @use '../styles/partials/variables' as *;
+
+
 </style>

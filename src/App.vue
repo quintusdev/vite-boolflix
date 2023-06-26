@@ -29,12 +29,12 @@
 
         /* verifico che la barra di ricerca non sia vupta e aggiungo la query corrispondente alla richiesta di ricerca */
         if (store.searchValue !== '') {
-          myUrl += `&query=${searchValue}`;
+          myUrl += `&query=${store.searchValue}`;
         }
 
         /* richiamo la axios e inserisco i dati */
         axios.get(myUrl).then((response) => {
-          store.List =response.data.results;
+          store.list = response.data.results;
         });
       }
     }
@@ -43,11 +43,10 @@
 
 <template>
   <!-- Inserisco tutto dentro un DIV altrimenti non visualizza nulla -->
-  <div class="container">
-    <div class="row">
+  <div>
+    <!-- Inserisco la funzione di ricerca al click del bottone -->
       <AppHeader @search="getFilm"/>
       <AppMain />
-    </div>
   </div>
 </template>
 

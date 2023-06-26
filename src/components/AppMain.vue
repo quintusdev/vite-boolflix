@@ -5,21 +5,30 @@
     import AppCard from './AppCard.vue';
 
     export default {
+        components:{
+            AppCard
+        },
         data() {
             return {
                 store,
             }
         },
-        components:{
-            AppCard
-        }
+        
     }
 </script>
 
 <template>
-    <AppCard />
+    <div class="contaniner">
+        <div class="row">
+            <div v-for="(film, index) in store.list" :key="index">
+                <AppCard :myFilm="film"/>
+                <hr>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
+    @use '../src/styles/generals.scss' as *;
     @use '../styles/partials/variables' as *;
 </style>
