@@ -1,6 +1,14 @@
 <script>
+    /* importo lo store dal file store.js */
+    import { store } from '../store.js';
+
     export default {
-        
+        data() {
+            return {
+                store,
+            }
+        },
+
     }
 </script>
 
