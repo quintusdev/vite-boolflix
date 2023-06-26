@@ -24,9 +24,11 @@
 
 <template>
   <!-- Inserisco tutto dentro un DIV altrimenti non visualizza nulla -->
-  <div>
-    <AppHeader />
-    <AppMain />
+  <div class="container">
+    <div class="row">
+      <AppHeader />
+      <AppMain />
+    </div>
   </div>
 </template>
 
