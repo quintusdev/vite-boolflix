@@ -14,7 +14,7 @@
 
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row d-flex p-3">
             <div class="input-group rounded">
                 <input type="search" class="form-control rounded" placeholder="Ricerca qui il tuo film o serie preferita" aria-label="Search" aria-describedby="search-addon" v-model="store.searchValue"/>
                 <button class="p-1" @click="$emit('search')">Ricerca</button>

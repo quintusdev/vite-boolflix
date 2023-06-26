@@ -15,37 +15,85 @@
 </script>
 
 <template>
-        <div class="card">
-            <div v-if="(myFilm.poster_path !== null)">
-                <img :src="'https://image.tmdb.org/t/p/w500/' + myFilm.poster_path">
+        <div class="film">
+            <div v-if="(myFilm.poster_path !== null)" class="py-3 px-3 m-2">
+                <img :src="'https://image.tmdb.org/t/p/w342/' + myFilm.poster_path">
             </div>
             <div v-else>
-                <img id="altimg" src="../../public/image.png">
+                <img id="altimg" src="https://www.altavod.com/assets/images/poster-placeholder.png">
             </div>
-            <!-- inserisco la tipologia della ricerca -->
-            <div>Tipologia: {{ myFilm.media_type }}</div>
-            <!-- In base se Movie o Serie inserisco il nome corretto -->
-            <div>Titolo: {{ myFilm.name }} {{ myFilm.title }}</div>
-            <div>Titolo Originale: {{ myFilm.original_name }} {{ myFilm.original_title }}</div>
-            <!-- Inserisco la bandiera correta rispetto alla lingua -->
-            <div>Lingua: <img id="copertina" :src="'../../node_modules/country-flag-icons/flags/1x1/' + myFilm.original_language.toUpperCase() + '.svg'" alt="Bandiera non Trovata"></div>
-            <!-- Inserisco il voto medio -->
-            <div>Voto Medio: {{ myFilm.vote_average }}</div>
+            <ul class="description">
+                <!-- inserisco la tipologia della ricerca -->
+                <li>Tipologia: <span>{{ myFilm.media_type }}</span></li>
+                <!-- In base se Movie o Serie inserisco il nome corretto -->
+                <li>Titolo: <span>{{ myFilm.name }} {{ myFilm.title }}</span></li>
+                <li>Titolo Originale: <span>{{ myFilm.original_name }} {{ myFilm.original_title }}</span></li>
+                <!-- Inserisco la bandiera correta rispetto alla lingua -->
+                <li>Lingua: <img id="copertina" :src="'../../node_modules/country-flag-icons/flags/1x1/' + myFilm.original_language.toUpperCase() + '.svg'" alt="Bandiera non Trovata"></li>
+                <!-- Inserisco il voto medio -->
+                <li>Voto: 
+                    <i v-for="(star, index) in Math.round(myFilm.vote_average / 2)" :key="index" class="fa-solid fa-star" style="color: #e9e316;"></i>
+                    <i v-for="(star, index) in Math.round(5 - myFilm.vote_average / 2)" :key="index + 5" class="fa-regular fa-star" style="color: #e9e316;"></i>
+                </li>
+            </ul>
         </div>
 </template>
 
 <style lang="scss" scoped>
     @use '../styles/partials/variables' as *;
 
+    .film{
+        display: flex;
+        justify-content: center;
+
+        &:hover img{
+          display: none;
+          opacity: 0.7;
+        }
+        
+        &:hover .description{
+          display: block;
+        }
+        img{
+          width: 350px;
+        }
+      }
+
+    .description{
+        margin:auto;
+        width: 100%;
+        list-style: none;
+        height: 100%;
+        background-color: black;
+        display: none;
+        overflow: scroll;
+        inset: 0;
+    }
+
     #copertina{
         width: 48px;
-        height: 38px;
-        border: 1px solid black;
+        height: 35px;
+        border: 1px solid white;
     }
 
     #altimg{
-        width: 500px;
-        height: 750px;
+        width: 342px;
+        height: 100%;
+        background-color: black;
+    }
+
+    ul, li{
+        list-style-type: none;
+
+        li {
+            font-size: 18px;
+            color: whitesmoke;
+            margin-bottom: 5px;
+            
+            span{
+                font-size: 20px;
+            }
+        }
     }
 
 </style>

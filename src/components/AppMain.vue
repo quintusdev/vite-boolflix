@@ -18,7 +18,7 @@
 </script>
 
 <template>
-    <div class="contaniner">
+    <div class="contaniner mn">
         <div class="row">
             <div class="content d-flex flex-wrap">
                 <div v-for="(film, index) in store.list" :key="index">
@@ -31,4 +31,12 @@
 
 <style lang="scss" scoped>
     @use '../styles/partials/variables' as *;
+
+    .mn{
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        background-color: black;
+    }
+    
 </style>
