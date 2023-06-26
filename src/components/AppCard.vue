@@ -24,7 +24,6 @@
 </template>
 
 <style lang="scss" scoped>
-    @use '../src/styles/generals.scss' as *;
     @use '../styles/partials/variables' as *;
 
 
