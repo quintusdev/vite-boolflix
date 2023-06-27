@@ -18,25 +18,26 @@
 </script>
 
 <template>
-    <div class="contaniner mn">
-        <div class="row">
-            <div class="content d-flex flex-wrap">
-                <div v-for="(film, index) in store.list" :key="index">
-                    <AppCard :myFilm="film"/>
-                </div>
+  <div class="container mn">
+    <div class="row">
+            <div v-for="(film, index) in store.list" :key="index">
+              <AppCard :myFilm="film"/>
             </div>
+          </div>
         </div>
-    </div>
 </template>
 
 <style lang="scss" scoped>
-    @use '../styles/partials/variables' as *;
+@use '../styles/partials/variables' as *;
 
-    .mn{
-        width: 100%;
-        height: 100vh;
-        margin: 0 auto;
-        background-color: black;
-    }
-    
+.mn {
+    overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 </style>
