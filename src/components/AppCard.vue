@@ -25,7 +25,12 @@
       <div class="poster-wrapper"
         @mouseenter="showDescription = true"
         @mouseleave="showDescription = false">
-        <img :src="'https://image.tmdb.org/t/p/w342/' + myFilm.poster_path" class="poster-image"/>
+        <div v-if="myFilm.poster_path !== null">
+            <img :src="'https://image.tmdb.org/t/p/w342/' + myFilm.poster_path" class="poster-image"/>
+        </div>
+        <div v-else>
+            <img :src="'../../public/image.png'" class="poster-image"/>
+        </div>
         <div class="overlay" v-show="showDescription"></div>
         <div class="description" v-show="showDescription">
           <ul>

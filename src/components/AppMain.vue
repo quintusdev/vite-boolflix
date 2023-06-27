@@ -20,7 +20,7 @@
 <template>
   <div class="container mn">
     <div class="row">
-            <div v-for="(film, index) in store.list" :key="index">
+            <div id="content" v-for="(film, index) in store.list" :key="index">
               <AppCard :myFilm="film"/>
             </div>
           </div>
@@ -32,12 +32,15 @@
 
 .mn {
     overflow: hidden;
-  width: 100%;
-  min-height: 100vh;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+#content{
+    width: 25%;
+}
 </style>
