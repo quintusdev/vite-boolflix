@@ -1,39 +1,44 @@
 <script>
-  /* importo l'Axios */
+  // Importo l'Axios per effettuare richieste HTTP
   import axios from 'axios'; 
-  /* importo lo store dal file store.js */
+
+  // Importo lo store dal file store.js
   import { store } from './store.js';
 
-/* IMPORT FILE PROGETTO */
+  // Importo i componenti del progetto
   import AppHeader from './components/AppHeader.vue';
   import AppMain from './components/AppMain.vue';
 
-  /* EXPORT COMPONENTS E DATA */
-  export default{
+  // Esporto il componente principale
+  export default {
     data() {
       return {
+        // Utilizzo lo store come parte dei dati del componente
         store,
       }
     },
-    components:{
+    components: {
+      // Registro i componenti utilizzati nel template
       AppHeader,
       AppMain,
     },
-    mounted(){
+    mounted() {
+      // Chiamo il metodo getFilm al momento del montaggio del componente
       this.getFilm();
     },
     methods: {
-      getFilm(){
-        /* Inserisco l'API in una variabile */
+      getFilm() {
+        // Costruisco l'URL dell'API utilizzando il valore dell'URL di base dallo store
         let myUrl = store.apiUrl;
 
-        /* verifico che la barra di ricerca non sia vupta e aggiungo la query corrispondente alla richiesta di ricerca */
+        // Verifico se la barra di ricerca è vuota e aggiungo una query di ricerca all'URL
         if (store.searchValue !== '') {
           myUrl += `&query=${store.searchValue}`;
         }
 
-        /* richiamo la axios e inserisco i dati */
+        // Effettuo una richiesta GET utilizzando Axios all'URL costruito
         axios.get(myUrl).then((response) => {
+          // Aggiorno la lista di film nello store con i dati ricevuti dalla risposta
           store.list = response.data.results;
         });
       }
