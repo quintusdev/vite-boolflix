@@ -24,11 +24,7 @@
 
 <template>
   <div class="movie-card">
-    <div class="poster-wrapper">
-      <!-- Nasconde la descrizione quando il mouse esce -->
-      @mouseenter="showDescription = true" 
-      <!-- Nasconde la descrizione quando il mouse esce -->
-      @mouseleave="showDescription = false"> 
+    <div class="poster-wrapper" @mouseenter="showDescription = true" @mouseleave="showDescription = false">  <!-- MOstra o nasconde la descrizione quando il mouse entra o esce -->
       <div v-if="myFilm.poster_path !== null"> <!-- Se è disponibile il percorso del poster -->
         <img :src="'https://image.tmdb.org/t/p/w342/' + myFilm.poster_path" class="poster-image"/>
       </div>

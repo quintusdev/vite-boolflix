@@ -45,7 +45,6 @@
     align-items: center;
     justify-content: center;
   }
-
   /* Stile per l'elemento con id "content" */
   #content {
     width: 25%;
