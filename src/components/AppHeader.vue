@@ -22,7 +22,7 @@
       <div class="col-3">
         <div class="input-group rounded gap-4 text-danger">
           <!-- Campo di input per la ricerca di film o serie -->
-          <input type="search" class="form-control rounded" placeholder="Ricerca qui il tuo film o serie preferita" aria-label="Search" aria-describedby="search-addon" v-model="store.searchValue"/>
+          <input type="search" class="form-control rounded" placeholder="Ricerca" aria-label="Search" aria-describedby="search-addon" v-model="store.searchValue"/>
           <!-- Bottone per avviare la ricerca -->
           <button class="btn btn-primary btn-sm rounded" @click="$emit('search')">Ricerca</button>
         </div>
