@@ -4,11 +4,13 @@
 
   // Importo il file del componente AppCard
   import AppCard from './AppCard.vue';
+  import AppSerie from './AppSerie.vue';
 
   export default {
     components: {
       // Registro il componente AppCard
-      AppCard
+      AppCard,
+      AppSerie,
     },
     data() {
       return {
@@ -20,12 +22,25 @@
 </script>
 
 <template>
+  <!-- Sezione Film -->
   <div class="container mn">
     <div class="row">
+      <h1 class="text-center">FILM</h1>
       <!-- Itero sugli elementi della lista di film nello store -->
       <div id="content" v-for="(film, index) in store.list" :key="index">
         <!-- Utilizzo il componente AppCard passando il film corrente come prop -->
-        <AppCard :myFilm="film"/>
+        <AppCard v-if="film.media_type === 'movie'" :myFilm="film"/>
+      </div>
+    </div>
+  </div>
+  <!-- Sezione Serie --> 
+  <div class="container mn">
+    <div class="row">
+      <h1 class="text-center">SERIE TV</h1>
+      <!-- Itero sugli elementi della lista di serie nello store -->
+      <div id="content" v-for="(serie, index) in store.list" :key="index">
+        <!-- Utilizzo il componente AppSerie passando la serie corrente come prop -->
+        <AppSerie v-if="serie.media_type === 'tv'" :mySerie="serie" />
       </div>
     </div>
   </div>
@@ -48,5 +63,11 @@
   /* Stile per l'elemento con id "content" */
   #content {
     width: 25%;
+  }
+
+  h1{
+    font-size: 30px;
+    font-weight: 700;
+    color: red;
   }
 </style>

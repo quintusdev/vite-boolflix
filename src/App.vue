@@ -24,33 +24,32 @@
     },
     mounted() {
       // Chiamo il metodo getFilm al momento del montaggio del componente
-      this.getFilm();
+      this.getFilmAndSerie();
     },
     methods: {
-      getFilm() {
+      getFilmAndSerie() {
         // Costruisco l'URL dell'API utilizzando il valore dell'URL di base dallo store
         let myUrl = store.apiUrl;
-
         // Verifico se la barra di ricerca è vuota e aggiungo una query di ricerca all'URL
         if (store.searchValue !== '') {
           myUrl += `&query=${store.searchValue}`;
         }
-
         // Effettuo una richiesta GET utilizzando Axios all'URL costruito
         axios.get(myUrl).then((response) => {
           // Aggiorno la lista di film nello store con i dati ricevuti dalla risposta
           store.list = response.data.results;
         });
+      },
       }
-    }
   }
+
 </script>
 
 <template>
   <!-- Inserisco tutto dentro un DIV altrimenti non visualizza nulla -->
   <div>
     <!-- Inserisco la funzione di ricerca al click del bottone -->
-      <AppHeader @search="getFilm"/>
+      <AppHeader @search="getFilmAndSerie"/>
       <AppMain />
   </div>
 </template>

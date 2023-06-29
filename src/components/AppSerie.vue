@@ -11,12 +11,12 @@
       }
     },
     props: {
-      myFilm: Object, // Proprietà ricevuta dal componente padre che rappresenta il film corrente
+        mySerie: Object, // Proprietà ricevuta dal componente padre che rappresenta il film corrente
     },
     methods: {
       // Funzione che restituisce l'URL della bandiera corretta in base alla lingua del film
       getFlagUrl() {
-        return `../../node_modules/country-flag-icons/flags/1x1/${this.myFilm.original_language.toUpperCase()}.svg`;
+        return `../../node_modules/country-flag-icons/flags/1x1/${this.mySerie.original_language.toUpperCase()}.svg`;
       },
     },
   }
@@ -25,8 +25,8 @@
 <template>
   <div class="movie-card">
     <div class="poster-wrapper" @mouseenter="showDescription = true" @mouseleave="showDescription = false"> <!-- Nasconde la descrizione quando il mouse esce -->
-      <div v-if="myFilm.poster_path !== null"> <!-- Se è disponibile il percorso del poster -->
-        <img :src="'https://image.tmdb.org/t/p/w342/' + myFilm.poster_path" class="poster-image"/>
+      <div v-if="mySerie.poster_path !== null"> <!-- Se è disponibile il percorso del poster -->
+        <img :src="'https://image.tmdb.org/t/p/w342/' + mySerie.poster_path" class="poster-image"/>
       </div>
       <div v-else> <!-- Se il percorso del poster non è disponibile -->
         <img id="not_img" :src="'../../public/image.jpeg'" class="poster-image"/>
@@ -34,16 +34,16 @@
       <div class="overlay" v-show="showDescription"></div> <!-- Sovrapposizione per effetto visivo -->
       <div class="description" v-show="showDescription"> <!-- Descrizione del film -->
         <ul>
-          <li>Tipologia: <span><strong>{{ myFilm.media_type }}</strong></span></li>
+          <li>Tipologia: <span><strong>{{ mySerie.media_type }}</strong></span></li>
           <!-- Con l'operatore OR visualizzi il titolo corretto in base alla tipologia -->
-          <li>Titolo: <span><strong>{{myFilm.title }}</strong></span></li>
-          <li>Titolo Originale: <span><strong>{{ myFilm.original_title }}</strong></span></li>
-          <li>Lingua: <img id="flag" :src="getFlagUrl(myFilm.original_language)" :alt="myFilm.original_language.toUpperCase()"/></li>
+          <li>Titolo: <span><strong>{{ mySerie.name}}</strong></span></li>
+          <li>Titolo Originale: <span><strong>{{ mySerie.original_name}}</strong></span></li>
+          <li>Lingua: <img id="flag" :src="getFlagUrl(mySerie.original_language)" :alt="mySerie.original_language.toUpperCase()"/></li>
           <li>Voto:
             <!-- con la funzione sail arrotondo all'interno inferiore -->
-            <i v-for="n in 5" :key="n" style="color:#e9e316" class="fa-star" :class="(n<= Math.ceil(myFilm.vote_average / 2)) ? 'fas' : 'far'"></i>
+            <i v-for="n in 5" :key="n" style="color:#e9e316" class="fa-star" :class="(n<= Math.ceil(mySerie.vote_average / 2)) ? 'fas' : 'far'"></i>
           </li>
-          <li>Trama: <p><em>{{ myFilm.overview }}</em></p></li>
+          <li>Trama: <p><em>{{ mySerie.overview }}</em></p></li>
         </ul>
       </div>
     </div>
