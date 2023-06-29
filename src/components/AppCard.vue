@@ -24,12 +24,12 @@
 
 <template>
   <div class="movie-card">
-    <div class="poster-wrapper" @mouseenter="showDescription = true" @mouseleave="showDescription = false">  <!-- MOstra o nasconde la descrizione quando il mouse entra o esce -->
+    <div class="poster-wrapper" @mouseenter="showDescription = true" @mouseleave="showDescription = false"> <!-- Nasconde la descrizione quando il mouse esce -->
       <div v-if="myFilm.poster_path !== null"> <!-- Se è disponibile il percorso del poster -->
         <img :src="'https://image.tmdb.org/t/p/w342/' + myFilm.poster_path" class="poster-image"/>
       </div>
       <div v-else> <!-- Se il percorso del poster non è disponibile -->
-        <img :src="'../../public/image.png'" class="poster-image"/>
+        <img id="not_img" :src="'../../public/image.jpeg'" class="poster-image"/>
       </div>
       <div class="overlay" v-show="showDescription"></div> <!-- Sovrapposizione per effetto visivo -->
       <div class="description" v-show="showDescription"> <!-- Descrizione del film -->
@@ -40,8 +40,8 @@
           <li>Titolo Originale: <span><strong>{{ myFilm.original_name || myFilm.original_title }}</strong></span></li>
           <li>Lingua: <img id="flag" :src="getFlagUrl(myFilm.original_language)" :alt="myFilm.original_language.toUpperCase()"/></li>
           <li>Voto:
-            <i v-for="star in Math.round(myFilm.vote_average / 2)" :key="star" class="fa-solid fa-star" style="color: #e9e316;"></i>
-            <i v-for="star in Math.round(5 - myFilm.vote_average / 2)" :key="star" class="fa-regular fa-star" style="color: #e9e316;"></i>
+            <!-- con la funzione sail arrotondo all'interno inferiore -->
+            <i v-for="n in 5" :key="n" style="color:#e9e316" class="fa-star" :class="(n<= Math.ceil(myFilm.vote_average / 2)) ? 'fas' : 'far'"></i>
           </li>
           <li>Trama: <p><em>{{ myFilm.overview }}</em></p></li>
         </ul>
@@ -70,8 +70,13 @@
     height: 100%;
     transition: opacity 0.3s;
   }
+  #not_img{
+    width: 360px;
+    height: 500px;
+    object-fit: fill;
+  }
   #flag {
-    width: 48px;
+    width: 45px;
     height: 30px;
     border: 1px solid white;
   }
